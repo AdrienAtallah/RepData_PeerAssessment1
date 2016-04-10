@@ -1,6 +1,8 @@
 # Reproducible Research: Peer Assessment 1
 Adrien Atallah  
 
+<BR>
+
 ## Loading and preprocessing the data
 
 We'll read in the raw data file "activity.csv" and change the class of the date variable.
@@ -11,6 +13,7 @@ raw$date <- as.Date(raw$date)
 ```
 
 
+<BR>
 
 ## What is the mean total number of steps taken per day?
 
@@ -18,7 +21,7 @@ Let's calculate the sum of the number of steps taken each day and draw a histogr
 
 ```r
 totsteps <- aggregate(steps ~ date, data = raw, FUN = "sum")
-hist(totsteps$steps, xlab = "Total Number of Steps", main = "Histogram of Total Number of Steps per Day (Raw Dataset)")
+hist(totsteps$steps, breaks = 50, xlab = "Total Number of Steps", main = "Histogram of Total Number of Steps per Day (Raw Dataset)")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)
@@ -41,6 +44,8 @@ median(totsteps$steps)
 ## [1] 10765
 ```
 
+<BR>
+
 ## What is the average daily activity pattern?
 Let's first calculate the average number of steps for each 5 minute interval and draw a time series plot.
 
@@ -60,6 +65,8 @@ avsteps[avsteps$steps == max(avsteps$steps),]$interval
 ```
 ## [1] 835
 ```
+
+<BR>
 
 
 ## Imputing missing values  
@@ -89,10 +96,18 @@ clean <- clean[order(clean$date),]
 ```
 
 How does this compare to the raw dataset?
-Let's calculate the total number of steps per day, then the mean and the median.
+Let's calculate the total number of steps per day and draw a histogram.
 
 ```r
 cleantotsteps <- aggregate(steps ~ date, data = clean, FUN = "sum")
+hist(cleantotsteps$steps, breaks = 50, xlab = "Total Number of Steps", main = "Histogram of Total Number of Steps per Day (Cleaned Dataset)")
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-9-1.png)
+
+Now, let's calculate the mean and median of the clean data set.
+
+```r
 mean(cleantotsteps$steps)
 ```
 
@@ -126,6 +141,8 @@ median(totsteps$steps) - median(cleantotsteps$steps)
 ```
 Interesting, the mean's are the same but the median seems to have been shifted up. 
 
+<BR>
+
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -146,7 +163,7 @@ library(ggplot2)
 print(qplot(interval, steps, data = avstepsdays, facets = day ~., geom = "line", main = "Average Steps Taken vs. 5 min Interval (Cleaned Dataset)"))
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-12-1.png)
+![](PA1_template_files/figure-html/unnamed-chunk-13-1.png)
 
 It looks like there are more steps being taken on the weekends.  Let's compare the overall totals.
 

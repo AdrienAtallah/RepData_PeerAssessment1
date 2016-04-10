@@ -15,7 +15,7 @@ totsteps <- aggregate(steps ~ date, data = raw, FUN = "sum")
 
 #Create historgram of total number of steps per day:
 png(file = "TotalSteps_Hist1-Raw.png", width = 480, height = 480)
-hist(totsteps$steps, xlab = "Total Number of Steps", main = "Histogram of Total Number of Steps per Day (Raw Dataset)")
+hist(totsteps$steps, breaks = 50, xlab = "Total Number of Steps", main = "Histogram of Total Number of Steps per Day (Raw Dataset)")
 dev.off()
 
 #Calculate mean and median:
@@ -57,7 +57,7 @@ cleantotsteps <- aggregate(steps ~ date, data = clean, FUN = "sum")
 
 #Create historgram of total number of steps per day with clean dataset:
 png(file = "TotalSteps_Hist2-Clean.png", width = 480, height = 480)
-hist(cleantotsteps$steps, xlab = "Total Number of Steps", main = "Histogram of Total Number of Steps per Day (Cleaned Dataset)")
+hist(cleantotsteps$steps, breaks = 50, xlab = "Total Number of Steps", main = "Histogram of Total Number of Steps per Day (Cleaned Dataset)")
 dev.off()
 
 #Re-calculate mean and median with clean dataset and compare to values from raw dataset:
