@@ -26,7 +26,7 @@ hist(totsteps$steps, breaks = 50, xlab = "Total Number of Steps", main = "Histog
 
 ![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)
 
-Next, we'll calculate the mean and median of the total number of steps taken for each day.  
+Looks like the mean and median probably lie somewhere just over 1000, let's check.  
 
 ```r
 mean(totsteps$steps)
@@ -56,7 +56,7 @@ plot(avsteps$interval, avsteps$steps, type = "l", xlab = "Interval (minutes)", y
 
 ![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)
 
-Looks like there is a peak in the number of steps somewhere around the 800 minute interval, perhaps it's a daily run.  Let's see exactly which 5 minute interval had the maximum number of steps taken.
+Looks like there is a peak in the number of steps somewhere around the 800 minute interval, perhaps it's a daily run.  Let's see exactly which 5 minute interval had the maximum number of average steps taken.
 
 ```r
 avsteps[avsteps$steps == max(avsteps$steps),]$interval
